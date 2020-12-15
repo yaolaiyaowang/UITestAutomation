@@ -93,7 +93,7 @@
 - parameter name = "appPackage" value="com.android.contacts"
 - parameter name = "appActivity" value="com.android.contacts.activities.PeopleActivity"
 
-然后在test中添加对应的测试脚本
+然后在test中添加对应的测试脚本11
 
 **项目部署见csdn**
 https://blog.csdn.net/jinwu18/article/details/106011098
