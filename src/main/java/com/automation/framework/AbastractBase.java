@@ -5,11 +5,13 @@ import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.Random;
 
 import org.apache.tools.ant.taskdefs.Length.FileMode;
@@ -49,7 +51,8 @@ public class AbastractBase {
 	public String testReportName = "";//测试report	
 	public static String emulationName = "";//H5 emulation
 	public String testEnv = "";//test-测试环境，pre-预生产环境，pro-生产环境
-
+	InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("OrderUsefulInfo.properties");
+    Properties properties = new Properties();
 	
 	public void pressKey(Keys k) throws Throwable {
 		Actions action=new Actions(driver);

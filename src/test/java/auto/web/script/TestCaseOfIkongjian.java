@@ -4,6 +4,9 @@
 package auto.web.script;
 
 
+import java.io.InputStream;
+import java.util.Properties;
+
 import org.testng.annotations.Test;
 
 import com.automation.exception.FrameworkException;
@@ -55,12 +58,17 @@ public class TestCaseOfIkongjian extends WebTestNGBase{
 	@Test(alwaysRun=false, groups={"auto.demo.test.ikongjian.one"}, priority=1,timeOut=MAX_EXCUTE_TIME)
 	public void caseOfWebDriverStart()throws FrameworkException{
 		try{
+			InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("OrderUsefulInfo.properties");
+		    Properties properties = new Properties();
 			IKongJianWebPage ikongjianpage = new IKongJianWebPage(driver);
 			caseName = "生成预约单";
 			whichCaseIsRun(caseName);
+			properties.load(inputStream);
+			String myOrderListSize = properties.getProperty("myOrderListSize");
+			int myOrderListSizeInt = Integer.parseInt(myOrderListSize);
 			ikongjianpage.loginIkongjian("wangliang1","space521");
 			
-			for(int inum=0;inum<2;inum++){
+			for(int inum=0;inum<myOrderListSizeInt;inum++){
 				ikongjianpage.createPreOrder();
 			}
 			

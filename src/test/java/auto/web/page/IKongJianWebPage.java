@@ -3,6 +3,9 @@
  */
 package auto.web.page;
 
+import java.io.InputStream;
+import java.util.Properties;
+
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -20,8 +23,12 @@ import com.automation.entities.OneShopOrder;
  */
 public class IKongJianWebPage extends WebCommon{
 	OneShopOrder osorder;
+	InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("OrderUsefulInfo.properties");
+    Properties properties = new Properties();
+    
+   
 	
-	public IKongJianWebPage(RemoteWebDriver driver) {
+	public IKongJianWebPage(RemoteWebDriver driver) {		
 		super(driver);
 	}
 	
@@ -36,7 +43,9 @@ public class IKongJianWebPage extends WebCommon{
 	public void loginIkongjian(String name,String password){
 		
 		try {
-			toURL("https://uc.stage.ikongjian.com/login");
+			 properties.load(inputStream);
+			 String envirment = properties.getProperty("Environment");
+			toURL("https://uc."+envirment+".ikongjian.com/login");
 			txtBoxSendValue(usernameBy, name);
 			txtBoxSendValue(passwordBy, password);
 			eleClickBy(login);
@@ -66,8 +75,10 @@ public class IKongJianWebPage extends WebCommon{
 	 * */
 	
 	public void createPreOrder() throws Throwable{
+		properties.load(inputStream);
+		 String envirment = properties.getProperty("Environment");
 		osorder = new OneShopOrder();
-		toURL("https://ncrm.stage.ikongjian.com/order/addOrder");
+		toURL("https://ncrm."+envirment+".ikongjian.com/order/addOrder");
 		
 		String phoneNum = phoneNumberGet();
 		phoneNumberList.add(phoneNum);
@@ -129,8 +140,10 @@ public class IKongJianWebPage extends WebCommon{
 	public void openOrderPage(){
 		try {
 		//	eleClickBy(crmBy);
-			
-			toURL("https://ncrm.stage.ikongjian.com/sysMain");
+			properties.load(inputStream);
+			 String envirment = properties.getProperty("Environment");
+			 
+			toURL("https://ncrm."+envirment+".ikongjian.com/sysMain");
 			eleClickBy(preorderManageBy);
 			Thread.sleep(2000);
 			
@@ -229,7 +242,10 @@ public class IKongJianWebPage extends WebCommon{
 	 * */
 	
 	public void payPreMoney(int phoneindex) throws Throwable{
-		toURL("https://fms.stage.ikongjian.com/orderPayController/listPage");
+		properties.load(inputStream);
+		 String envirment = properties.getProperty("Environment");
+		 
+		toURL("https://fms."+envirment+".ikongjian.com/orderPayController/listPage");
 		doOptionSelect(addNewOrderBy,"4");
 		txtBoxSendValue(mobileBy, phoneNumberList.get(phoneindex));
 		eleClickBy(searchPayOrderBy);
@@ -288,7 +304,10 @@ public class IKongJianWebPage extends WebCommon{
 	 * */
 	
 	public void moveTheOrder(int phoneindex) throws Throwable{
-		toURL("https://ncrm.stage.ikongjian.com/decorateOrder/list");
+		properties.load(inputStream);
+		 String envirment = properties.getProperty("Environment");
+		 
+		toURL("https://ncrm."+envirment+".ikongjian.com/decorateOrder/list");
 		txtBoxSendValue(orderMobileBy, phoneNumberList.get(phoneindex));
 		//txtBoxSendValue(orderMobileBy,"18774691106");
 		eleClickBy(HTOrderPayBy);
