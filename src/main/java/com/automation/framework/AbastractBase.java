@@ -1,11 +1,18 @@
 package com.automation.framework;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.apache.tools.ant.taskdefs.Length.FileMode;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
@@ -19,8 +26,8 @@ import io.appium.java_client.MobileElement;
 
 /**
  * auto test 基础类
- * @author panyongjun
- * July 12, 2016
+ * @author mazy
+ * July 12, 2020
  */
 
 public class AbastractBase {
@@ -35,6 +42,8 @@ public class AbastractBase {
 	public static final long MAX_EXCUTE_TIME = 5 * 10 * 6000;
 	public static final String TEST_REPORT_OUTPUT_FOLDER = "test-output";
 	public static List<String> caseScreenShotList1 = new ArrayList<String>();//测试结果截图
+	public static List<String> phoneNumberList = new ArrayList<String>();//预约的手机号
+	public static List<String> nameList = new ArrayList<String>();//预约人姓名
 	public String testReportName = "";//测试report	
 	public static String emulationName = "";//H5 emulation
 	public String testEnv = "";//test-测试环境，pre-预生产环境，pro-生产环境
@@ -64,7 +73,7 @@ public class AbastractBase {
 	/**
 	 * 杀死指定浏览器进程
 	 * @param browserType
-	 * @author panyongjun
+	 * @author mazy
 	 * @throws Throwable
 	 */
 	public void browserKill(String browserType) throws Throwable {
@@ -85,6 +94,7 @@ public class AbastractBase {
 	
 	/**
 	 * return random str from list
+	 * 在列表中随机取元素，并返回结果
 	 * @param lists
 	 * @return
 	 * @throws Throwable
@@ -101,7 +111,7 @@ public class AbastractBase {
 	}
 	
 	/**
-	 * 异常处理，截图并写入日志文件
+	 * 异常处理，写入日志文件
 	 * @param ex
 	 * @throws Throwable
 	 */
@@ -112,7 +122,7 @@ public class AbastractBase {
 	/**
 	 * 根据当前执行case，对日志进行分割，以便于单独case执行日志的检查
 	 * @param caseName
-	 * @author panyongjun
+	 * @author mazy
 	 * @throws Throwable
 	 */
 	public void whichCaseIsRun(String testCaseName) throws Throwable {
@@ -124,7 +134,7 @@ public class AbastractBase {
 	/**
 	 * 注册人名生成
 	 * @return
-	 * @author panyongjun
+	 * @author mazy
 	 * @throws Throwable
 	 */
 	public String userNameGet() throws Throwable {
@@ -150,7 +160,7 @@ public class AbastractBase {
 	/**
 	 * 手机号码生成
 	 * @return
-	 * @author panyongjun
+	 * @author mazy
 	 * @throws Throwable
 	 */
 	public String phoneNumberGet() throws Throwable {
@@ -174,4 +184,30 @@ public class AbastractBase {
 		phoneNumber = phonePrefix[inWhichComIndex][inWhichComPrefix] + phoneSuffixStr;
 		return phoneNumber;
 	}
+	
+	/*
+	 * 
+	 * 将字符串输出到指定的文件中,覆盖式
+	 * */
+	
+	public void printTargetInfo(String neccMes,String filepath) throws IOException{
+		BufferedWriter  br = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filepath)));
+		br.write(neccMes);
+		br.newLine();
+		br.flush();
+		br.close();
+	}
+	
+	
+	/*
+	 * 字符串输出到文件，连续写操作，不覆盖
+	 * */
+	
+	public void printTargetInfoCont(String neccMes,String filepath) throws IOException{
+		BufferedWriter  br = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filepath,true)));
+		br.write(neccMes);
+		br.newLine();
+		br.flush();
+		br.close();
+	} 
 }

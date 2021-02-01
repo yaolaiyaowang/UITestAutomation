@@ -12,18 +12,18 @@
 	<parameter name = "port" value="4723" />
 	<parameter name = "udid" value="127.0.0.1:62001" /> 
 	<parameter name = "platformVersion" value="7.1.0" />
-	<parameter name = "appPackage" value="com.android.contacts" />
-	<parameter name = "appActivity" value="com.android.contacts.activities.PeopleActivity" />	
+	<parameter name = "appPackage" value="com.ikongjian.decoration" />
+	<parameter name = "appActivity" value="com.ikongjian.decoration.activity.SplashActivity" />	
     <groups>
 		<define name="all">
-			<include name="auto.demo.test.app" />
+			<include name="auto.demo.test.ikongjianapp" />
 		</define>
 		<run>  
 			<include name="all"/> 
 		</run>  
 	</groups>
     <classes>
-    	<class name="auto.app.script.TestCaseOfApp" />
+    	<class name="auto.app.script.TestCaseOfIkongjian" />
     </classes>
   </test>
 </suite>

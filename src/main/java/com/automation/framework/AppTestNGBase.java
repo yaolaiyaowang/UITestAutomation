@@ -23,7 +23,7 @@ import io.appium.java_client.android.AndroidDriver;
 
 /**
  * testng app 基础类
- * @author 爱吃苹果的鱼
+ * @author mazy
  *
  */
 public class AppTestNGBase extends AbastractBase{
@@ -56,15 +56,15 @@ public class AppTestNGBase extends AbastractBase{
 
 	/**
 	 * class执行前停止所有appium服务，并根据testng.xml重新启动appium
-	 * author:panyongjun
+	 * author:mazy
 	 * date:2019年12月27日
 	 */
 	@Parameters({"port", "udid"})
 	@BeforeClass(groups = "all")
 	public void beforeClass(String port, String udid) throws Throwable{
 		try {
-//			stopAppium();
-//			startAppium(Integer.valueOf(port), udid);
+			stopAppium();
+			startAppium(Integer.valueOf(port), udid);
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 		    String startAppiumLogcat = "cmd.exe /c \"adb -s " + udid + " logcat >d:/logs/" + udid.replace(":",  "_") + "_" + sdf.format(new Date()) + ".log\"";
 		    System.out.println(startAppiumLogcat);
@@ -78,12 +78,12 @@ public class AppTestNGBase extends AbastractBase{
 	
 	/**
 	 * driver initialize
-	 * author:panyongjun
+	 * author:mazy
 	 * date:2019年12月27日
 	 */
 	@Parameters({"noReset", "port", "udid", "appPackage", "appActivity", "platformVersion"})
 	@BeforeMethod(groups = "all")
-	public void beforeMethod(String noReset, String port, String udid, 
+	public void beforeMethod(boolean noReset, String port, String udid, 
 			String appPackage, String appActivity, String platformVersion) throws Throwable{
 		try {
 			DesiredCapabilities cap = new DesiredCapabilities();
@@ -95,7 +95,8 @@ public class AppTestNGBase extends AbastractBase{
 			cap.setCapability("udid", udid);
 			cap.setCapability("deviceName", udid);
 			cap.setCapability("appPackage", appPackage);
-			cap.setCapability("appActivity", appActivity);			
+			cap.setCapability("appActivity", appActivity);
+			logger.info(new URL("http://127.0.0.1:" + port + "/wd/hub"));
 			appHandler = new AndroidDriver<>(new URL("http://127.0.0.1:" + port + "/wd/hub"), cap);
 			Thread.sleep(3000);
 		} catch (Exception e) {
@@ -106,7 +107,7 @@ public class AppTestNGBase extends AbastractBase{
 	
 	/**
 	 * quit driver
-	 * author:panyongjun
+	 * author:mazy
 	 * date:2019年12月27日
 	 */
 	@AfterMethod(groups = "all")
@@ -120,7 +121,7 @@ public class AppTestNGBase extends AbastractBase{
 	
 	/**
 	 * class执行后，停止appium服务
-	 * author:panyongjun
+	 * author:mazy
 	 * date:2019年12月27日
 	 */
 	@AfterClass(groups = "all")
@@ -130,7 +131,14 @@ public class AppTestNGBase extends AbastractBase{
 	
 	/**
 	 * start appium
-	 * author:panyongjun
+	 * 例如：
+	 * 第一个appium服务，可以指定一个端口 -p 4723，然后指定一个设备名称 -u 【真机】，也就是-U参数（adb devices可以查看），-bp是指定bootstrap-port 
+	     （多个appium启动链接多个android设备时需要设置不同的 bootstrap-port ）,
+	   appium -a 127.0.0.1 -p 4723 -bp 4726 -U ML5RRPCUWO
+	  
+	        第二个appium 服务指定设备名称【夜神模拟器】
+	   appium -a 127.0.0.1 -p 4724 -bp 4725 -U 127.0.0.1:62001
+	 * author:mazy
 	 * date:2019年12月27日
 	 */
 	@Parameters({"port", "udid"})
@@ -143,7 +151,7 @@ public class AppTestNGBase extends AbastractBase{
     
     /**
      * stop appium
-     * author:panyongjun
+     * author:mazy
      * date:2019年12月27日
      */
     public void stopAppium() throws Throwable {

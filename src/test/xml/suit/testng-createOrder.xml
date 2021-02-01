@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="demo-createOrder" parallel="false">
+  <listeners>
+  	<listener class-name="com.automation.listener.TestNGListener" />
+    <listener class-name="com.automation.listener.RetryListener" />
+    <listener class-name="com.automation.listener.IReporterListener" />
+  </listeners>
+  
+  <suite-files>
+        <suite-file path="src/test/xml/auto/demo/testng-ikongjianapp.xml"/>
+        <suite-file path="src/test/xml/auto/demo/testng-ikongjianweb.xml"/>
+    </suite-files>
+  
+</suite>

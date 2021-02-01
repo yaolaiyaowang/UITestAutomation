@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * api公共方法类
- * @author 爱吃苹果的鱼
+ * @author mazy
  */
 public class ApiCommon extends AbastractBase{
 	//api common method to create
@@ -28,7 +28,7 @@ public class ApiCommon extends AbastractBase{
 	
 	/**
 	 * check device status
-	 * @author: 爱吃苹果的鱼
+	 * @author: mazy
 	 * @param udid
 	 * @return
 	 */
@@ -45,7 +45,7 @@ public class ApiCommon extends AbastractBase{
 	
 	/**
 	 * get devices list
-	 * @author: 爱吃苹果的鱼
+	 * @author: mazy
 	 * @return
 	 */
 	public List<String> getDevices() {
@@ -61,7 +61,7 @@ public class ApiCommon extends AbastractBase{
 	
 	/**
 	 * get ready device
-	 * @author: 爱吃苹果的鱼
+	 * @author: mazy
 	 * @return
 	 */
 	public List<String> getReadyDevices() {
@@ -82,7 +82,7 @@ public class ApiCommon extends AbastractBase{
 	}
 	/**
 	 * current device using user
-	 * @author: 爱吃苹果的鱼
+	 * @author: mazy
 	 * @param udid
 	 * @return
 	 */
@@ -98,7 +98,7 @@ public class ApiCommon extends AbastractBase{
 	
 	/**
 	 * disconnect device
-	 * @author: 爱吃苹果的鱼   
+	 * @author: mazy   
 	 * @param udid
 	 */
 	public void disConnect(String udid) {

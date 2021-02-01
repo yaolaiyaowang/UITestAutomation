@@ -4,6 +4,12 @@ import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 
+
+/*
+ * 
+ * 定时失败后的重试次数，放在监听器之中
+ * 
+ * */
 public class TestNGRetry implements IRetryAnalyzer {
 	
     Log4jLogger logger = new Log4jLogger();

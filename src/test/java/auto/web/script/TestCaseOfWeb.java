@@ -15,7 +15,7 @@ import auto.web.page.BaiduWebPage;
 
 public class TestCaseOfWeb extends WebTestNGBase{
 
-	@Test(alwaysRun=true, groups={"auto.demo.test.web"}, timeOut=MAX_EXCUTE_TIME)
+	@Test(alwaysRun=false, groups={"auto.demo.test.web"}, timeOut=MAX_EXCUTE_TIME)
 	public void caseOfWebDriverSearchAndOpenSeleniumHq()throws FrameworkException{
 		try{
 			caseName = "使用百度web检索selenium，并打开官方网站";
@@ -25,11 +25,16 @@ public class TestCaseOfWeb extends WebTestNGBase{
 			BaiduWebPage baidu = new BaiduWebPage(driver);
 			baidu.webDriverSearch("selenium");//检索		
 			
-			WebCommon web = new WebCommon(driver);
-			List<WebElement> resultList = web.eleListsGet(baidu.resultLinkBy);//获取检索结果中第一页链接列表	
+		//	WebCommon web = new WebCommon(driver);
+			List<WebElement> resultList = baidu.eleListsGet(baidu.resultLinkBy);//获取检索结果中第一页链接列表	
 			result = baidu.searchResultChk("seleniumhq.org", resultList);//比对结果并打开官方网址
 			
+			if(!result){
+				baidu.takeSnapShot("未查询到指定结果");
+				
+			};
 			assertEquals(result, true);
+			
 		}catch (Throwable e) {
 			e.printStackTrace();
 			throw new FrameworkException(e.getMessage());

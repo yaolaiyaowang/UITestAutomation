@@ -26,6 +26,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.automation.exception.FrameworkException;
@@ -35,7 +36,7 @@ import com.automation.listener.Log4jLogger;
 
 /**
  * web公共方法类
- * @author 爱吃苹果的鱼
+ * @author mazy
  */
 public class WebCommon extends AbastractBase{
 	
@@ -47,7 +48,7 @@ public class WebCommon extends AbastractBase{
 	
 	/**
 	 * 登录后跳转至内部往来默认页
-	 * @author panyongjun
+	 * @author mazy
 	 * 2019年6月14日 下午3:41:00
 	 * @throws Throwable
 	 */
@@ -82,7 +83,7 @@ public class WebCommon extends AbastractBase{
 	 * 在元素List中，随便选择一个click
 	 * @param eleLists
 	 * @return
-	 * @author panyongjun
+	 * @author mazy
 	 * @throws Throwable
 	 */
 	public int eleClickRandom(List<WebElement> eleLists) throws Throwable {
@@ -106,7 +107,7 @@ public class WebCommon extends AbastractBase{
 	/**
 	 * 在元素List中，随便选择一个click
 	 * @param locator
-	 * @author panyongjun
+	 * @author mazy
 	 * @throws Throwable
 	 */
 	public int eleClickRandom(By locator) throws Throwable {
@@ -138,7 +139,7 @@ public class WebCommon extends AbastractBase{
 	
 	/**
 	 * 常用于页面跳转中，保留指定的页面
-	 * @author panyongjun
+	 * @author mazy
 	 * @throws Throwable
 	 */
 	public void keepOnePageOpen(String expectedHandle) throws Throwable {
@@ -160,7 +161,7 @@ public class WebCommon extends AbastractBase{
 
 	/**
 	 * 常用于页面跳转中，保留一个页面
-	 * @author panyongjun
+	 * @author mazy
 	 * @throws Throwable
 	 */
 	public void keepOnePageOpen() throws Throwable {
@@ -184,7 +185,7 @@ public class WebCommon extends AbastractBase{
 	 * @param newUrl
 	 * @param browserType
 	 * @return
-	 * @author panyongjun
+	 * @author mazy
 	 * @throws Throwable
 	 */
 	public RemoteWebDriver newBrowserOpen(String newUrl, String browserType) throws Throwable {
@@ -202,7 +203,7 @@ public class WebCommon extends AbastractBase{
 	
 	/**
 	 * 在浏览器中新打开一个browser tab
-	 * @author panyongjun
+	 * @author mazy
 	 * @throws Throwable
 	 */
 	public void newBrowserTab() throws Throwable {
@@ -224,7 +225,7 @@ public class WebCommon extends AbastractBase{
 	 * @param by
 	 * @param int 秒数， 如10
 	 * @return
-	 * @author panyongjun
+	 * @author mazy
 	 * @throws Throwable
 	 */
 	public boolean eleDisplayChk(final By by, int maxTime) throws Throwable {	
@@ -372,6 +373,19 @@ public class WebCommon extends AbastractBase{
 		}
 		return comboOptionTxtList;
 	}
+	
+	
+	/*
+	 * 
+	 * 对select中的option进行选取
+	 * */
+	public void doOptionSelect(By selectBy,String optionValue){
+		WebElement selElement = driver.findElement(selectBy); 
+		Select select = new Select(selElement);
+		select.selectByValue(optionValue);
+	}
+	
+	
 
 	/**
 	 * 文本输入框清空
@@ -809,7 +823,7 @@ public class WebCommon extends AbastractBase{
 	
 	/**
 	 * 元素点击
-	 * author:panyongjun
+	 * author:mazy
 	 * date:2019年8月9日
 	 */
 	public void eleClickByAction(WebElement ele) throws Throwable {
@@ -830,7 +844,7 @@ public class WebCommon extends AbastractBase{
 	
 	/**
 	 * 元素点击
-	 * author:panyongjun
+	 * author:mazy
 	 * date:2019年8月9日
 	 */
 	public void eleClickByAction(int x, int y) throws Throwable {
@@ -876,6 +890,11 @@ public class WebCommon extends AbastractBase{
 		Thread.sleep(1000);
 	}
 	
+	/**
+	 * 元素右击
+	 * @param locator
+	 * @throws Throwable
+	 */
 	public void eleContextClickBy(By locator) throws Throwable {
 		WebDriver wd=driver;
 		Actions action = new Actions(wd); 
@@ -1080,7 +1099,7 @@ public class WebCommon extends AbastractBase{
 	/**
 	 * 页面加载等待（最多30秒）
 	 * @param waitSeconds
-	 * @author panyongjun
+	 * @author mazy
 	 * @throws FrameworkException
 	 */
 	public void waitPageLoad(int waitSeconds) throws FrameworkException {
@@ -1107,9 +1126,10 @@ public class WebCommon extends AbastractBase{
 	}
 	
 	/**
+	 * 执行js语句
 	 * execute js with none return value
 	 * @param js
-	 * @author 爱吃苹果的鱼
+	 * @author mazy
 	 */
 	public void executeJS(String js) throws Throwable {
 		if (null != js && js.length() > 0) {
@@ -1119,8 +1139,9 @@ public class WebCommon extends AbastractBase{
 	
 	/**
 	 *execute js and return a value of string
+	 *执行js语句，并返回结果
 	 * @param js
-	 * @author 爱吃苹果的鱼
+	 * @author mazy
 	 * @throws
 	 * @return
 	 */
@@ -1133,8 +1154,9 @@ public class WebCommon extends AbastractBase{
 	}
 	
 	/**
-	 *open a new borrower window
-	 *@author 爱吃苹果的鱼
+	 * open a new borrower window
+	 * 打开空白window页,并返回结果
+	 *@author mazy
 	 */
 	public void openNewWindow() throws Throwable {
 		String js = "var result = window.open(\"about:blank\")";
@@ -1144,7 +1166,8 @@ public class WebCommon extends AbastractBase{
 	
 	/**
 	 * close window
-	 * @author 爱吃苹果的鱼
+	 * 关闭window页，并返回结果
+	 * @author mazy
 	 */
 	public void closeWindow() throws Throwable {
 		String js = "var result = window.close()";
@@ -1154,8 +1177,9 @@ public class WebCommon extends AbastractBase{
 	
 	/**
 	 * judge an element is visible or not
+	 * 判断指定元素是否可见
 	 * @param locator
-	 * @author 爱吃苹果的鱼
+	 * @author mazy
 	 */
 	public boolean isElementVisible(By locator) {
 
@@ -1172,7 +1196,7 @@ public class WebCommon extends AbastractBase{
 	
 	/**
 	 * 浏览器放大/缩小显示
-	 * @author panyongjun
+	 * @author mazy
 	 * @throws Throwable
 	 */
 	public void zoomInOrOut(int zoomTime) throws Throwable {
@@ -1190,7 +1214,7 @@ public class WebCommon extends AbastractBase{
 	/**
 	 * 向左移动
 	 * @param locator
-	 * @author panyongjun
+	 * @author mazy
 	 * @throws Throwable
 	 */
 	public void scrollToLeft(By locator) throws Throwable {
@@ -1201,7 +1225,7 @@ public class WebCommon extends AbastractBase{
 	/**
 	 * 向右移动
 	 * @param locator
-	 * @author panyongjun
+	 * @author mazy
 	 * @throws Throwable
 	 */
 	public void scrollToRight(By locator) throws Throwable {
@@ -1212,7 +1236,7 @@ public class WebCommon extends AbastractBase{
 	/**
 	 * 向下移动
 	 * @param locator
-	 * @author panyongjun
+	 * @author mazy
 	 * @throws Throwable
 	 */
 	public void scrollToDown(By locator) throws Throwable {
@@ -1223,7 +1247,7 @@ public class WebCommon extends AbastractBase{
 	/**
 	 * 向上移动
 	 * @param locator
-	 * @author panyongjun
+	 * @author mazy
 	 * @throws Throwable
 	 */
 	public void scrollToTop(By locator) throws Throwable {
@@ -1234,7 +1258,7 @@ public class WebCommon extends AbastractBase{
 	/**
 	 * 根据指定元素id滚动
 	 * @param id
-	 * @author panyongjun
+	 * @author mazy
 	 * @throws Throwable
 	 */
 	public void scrollToElementById(String id) throws Throwable{
@@ -1243,7 +1267,7 @@ public class WebCommon extends AbastractBase{
 	
 	/**
 	 * 向下滚动
-	 * @author panyongjun
+	 * @author mazy
 	 * @throws Throwable
 	 */
 	public void scrollToDown() throws Throwable {
@@ -1253,7 +1277,7 @@ public class WebCommon extends AbastractBase{
 	
 	/**
 	 * 向上滚动
-	 * @author panyongjun
+	 * @author mazy
 	 * @throws Throwable
 	 */
 	public void scrollToTop() throws Throwable {
@@ -1263,7 +1287,7 @@ public class WebCommon extends AbastractBase{
 	
 	/**
 	 * 向右滚动
-	 * @author panyongjun
+	 * @author mazy
 	 * @throws Throwable
 	 */
 	public void scrollToRight() throws Throwable {
@@ -1275,11 +1299,13 @@ public class WebCommon extends AbastractBase{
 	 * 滚动到指定位置
 	 * @param x
 	 * @param y
-	 * @author panyongjun
+	 * @author mazy
 	 * @throws Throwable
 	 */
 	public void scrollTo(int x, int y) throws Throwable {
 		((JavascriptExecutor)driver).
 		executeScript("window.scrollTo(" + x + "," + y + ")");		
 	}
+	
+	
 }

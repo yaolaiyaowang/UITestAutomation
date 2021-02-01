@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -21,7 +22,7 @@ import com.automation.listener.Log4jLogger;
 
 /**
  * testng web 基础类
- * @author 爱吃苹果的鱼
+ * @author mazy
  */
 public class WebTestNGBase extends AbastractBase{
 	
@@ -38,15 +39,17 @@ public class WebTestNGBase extends AbastractBase{
 	
 	Log4jLogger logger = new Log4jLogger();	
 	WebDriverManager webDriverManager = new WebDriverManager();
+	
 	AppCommon app = new AppCommon(appHandler);
 	WebCommon web = new WebCommon(driver);
 	
 	/**
 	 * test environment get
+	 * 设置测试环境
 	 * @param itc
 	 * @param testOn
 	 * @throws Throwable
-	 * @author: 爱吃苹果的鱼   
+	 * @author: mazy   
 	 * @date: 2020年4月13日
 	 */
 	@Parameters("testOn")
@@ -57,6 +60,7 @@ public class WebTestNGBase extends AbastractBase{
 	}
 	
 	/**
+	 * 设置测试设计的浏览器类型、路径、名称
 	 * broser setting
 	 * @param itc
 	 * @param handlerMode
@@ -64,7 +68,7 @@ public class WebTestNGBase extends AbastractBase{
 	 * @param browserPath
 	 * @param emulationName
 	 * @throws Throwable
-	 * @author: 爱吃苹果的鱼   
+	 * @author: mazy   
 	 */
 	@SuppressWarnings("static-access")
 	@Parameters({"handlerMode", "browserType", "browserPath", "emulationName"})
@@ -85,8 +89,9 @@ public class WebTestNGBase extends AbastractBase{
 	
 	/**
 	 * browser setting
+	 * 设置浏览器名称和路径
 	 * @throws Throwable
-	 * @author: 爱吃苹果的鱼   
+	 * @author: mazy   
 	 */
 	@BeforeClass(groups = "all") 
 	public void beforeClass() throws Throwable {
@@ -96,14 +101,16 @@ public class WebTestNGBase extends AbastractBase{
 	
 	/**
 	 * browser initialize
+	 * 对测试类型进行判断,方便对对应的测试类型进行设置
 	 * @throws Throwable
-	 * @author: 爱吃苹果的鱼   
+	 * @author: mazy   
 	 */
 	@BeforeMethod(groups = "all")
 	public void beforeMethod() throws Throwable{
 		try {
 			switch(testNGTestName.toLowerCase()) {
 			case "h5":
+				break;
 			case "web":{
 				driver = webDriverManager.getCurrentWebDriver(driverBrowserType);
 				driver.manage().window().maximize();
@@ -120,9 +127,10 @@ public class WebTestNGBase extends AbastractBase{
 	
 	/**
 	 * test case quit
+	 * 清除浏览器cookie
 	 * @param method
 	 * @throws Throwable
-	 * @author: 爱吃苹果的鱼   
+	 * @author: mazy   
 	 */
 	@AfterMethod(groups = "all")
 	public void afterMethod(Method method) throws Throwable {
@@ -148,8 +156,9 @@ public class WebTestNGBase extends AbastractBase{
 	
 	/**
 	 * testng report open
+	 * 通过cmd自动打开测试报告
 	 * @throws Throwable
-	 * @author: 爱吃苹果的鱼   
+	 * @author: mazy   
 	 */
 //	@AfterSuite(groups = "all")
 	public void afterSuite() throws Throwable {
@@ -163,9 +172,10 @@ public class WebTestNGBase extends AbastractBase{
 	
 	/**
 	 * browser path get
+	 * 将浏览器路径放在系统参数中
 	 * @param browserPath
 	 * @throws Throwable
-	 * @author: 爱吃苹果的鱼   
+	 * @author: mazy   
 	 */
 	private void browserPathSet(String browserPath) throws Throwable {
 		try{
@@ -180,9 +190,10 @@ public class WebTestNGBase extends AbastractBase{
 	
 	/**
 	 * handler mode get
+	 * 将浏览器类型放入系统参数中
 	 * @param handlerMode
 	 * @throws Throwable
-	 * @author: 爱吃苹果的鱼   
+	 * @author: mazy   
 	 */
 	private void handlerModeGet(String handlerMode) throws Throwable {
 		try{

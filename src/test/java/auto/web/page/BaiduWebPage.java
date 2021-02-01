@@ -40,7 +40,8 @@ public class BaiduWebPage extends WebCommon{
 	public boolean searchResultChk(String searchTxt, List<WebElement> resultList) throws Throwable {
 		boolean result = false; 
 		for(WebElement item:resultList) {
-			System.out.println(item.getText());
+			
+			System.out.println("哈哈"+item.getText());
 			if(item.getText().contains(searchTxt)) {
 				item.click();
 				result = true;

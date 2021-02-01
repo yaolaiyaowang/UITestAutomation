@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="demo-parallel" verbose="1" preserve-order="true" thread-count="3" parallel="methods">>
+<suite name="demo-web" parallel="false">
   <listeners>
   	<listener class-name="com.automation.listener.TestNGListener" />
     <listener class-name="com.automation.listener.RetryListener" />
@@ -12,17 +12,17 @@
   <parameter name ="emulationName" value="iPhone 6"/>
   <parameter name ="browserPath" value="" />
   <parameter name ="testOn" value="pro" />
-  <test name="api">
+  <test name="web">
     <groups>
 		<define name="all">
-			<include name="auto.demo.test.api.*.*" />
+			<include name="auto.demo.test.ikongjian" />
 		</define>
 		<run>  
 			<include name="all"/> 
 		</run>  
 	</groups>
     <classes>
-    	<class name="auto.api.script.TestCaseOfApiParallel" />
-    </classes>      
+    	<class name="auto.web.script.TestCaseOfIkongjian" />
+    </classes>
   </test>
 </suite>

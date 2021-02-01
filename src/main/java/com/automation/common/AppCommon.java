@@ -18,21 +18,26 @@ import io.appium.java_client.touch.offset.PointOption;
 
 /**
  * app公用方法类
- * @author 爱吃苹果的鱼
+ * @author mazy
  */
 public class AppCommon extends AbastractBase{
 
 	Log4jLogger logger = new Log4jLogger();
 	
+	
+	/*
+	 * 安卓驱动初始化
+	 * */
 	public AppCommon(AppiumDriver<MobileElement> handler) {
 		this.appHandler = handler;
 	}	
 	
 	/**
 	 * toast message check
+	 * 查看弹框中是否包含指定的字符串
 	 * @param toast
 	 * @return
-	 * @author: 爱吃苹果的鱼   
+	 * @author: mazy   
 	 * @date: 2020年4月23日
 	 */
 	public boolean toastChk(String toast) {
@@ -49,7 +54,8 @@ public class AppCommon extends AbastractBase{
 	
 	/**
 	 * device width get
-	 * @author: 爱吃苹果的鱼   
+	 * 获取屏幕的宽度
+	 * @author: mazy   
 	 * @date: 2020年4月23日
 	 */
 	public int deviceXGet() {
@@ -58,7 +64,8 @@ public class AppCommon extends AbastractBase{
 	
 	/**
 	 * device height get
-	 * @author: 爱吃苹果的鱼   
+	 * 获取屏幕的高度
+	 * @author: mazy   
 	 * @date: 2020年4月23日
 	 */
 	public int deviceYGet() {
@@ -67,9 +74,10 @@ public class AppCommon extends AbastractBase{
 	
 	/**
 	 * tap click with point x and y
+	 * 点击指定坐标
 	 * @param x
 	 * @param y
-	 * @author: 爱吃苹果的鱼   
+	 * @author: mazy   
 	 * @date: 2020年4月23日
 	 */
 	@SuppressWarnings("rawtypes")
@@ -84,7 +92,7 @@ public class AppCommon extends AbastractBase{
 	 * 输出日志
 	 * @param udid
 	 * @param logPath
-	 * @author: 爱吃苹果的鱼   
+	 * @author: mazy   
 	 * @date: 2020年4月12日
 	 */
 	public void appiumLogcat(String udid, String logPath){
@@ -93,7 +101,7 @@ public class AppCommon extends AbastractBase{
 	
 	/**
 	 * 执行adb命令
-	 * author:panyongjun
+	 * author:mazy
 	 * date:2019年12月27日
 	 */
 	private void excuteAdbShell(String s) {
@@ -107,7 +115,7 @@ public class AppCommon extends AbastractBase{
 	
 	/**
 	 * 通过app输入法回车
-	 * author:panyongjun
+	 * author:mazy
 	 * date:2020年1月3日
 	 */
 	public void imeEnterPress(String udid) throws Throwable{
@@ -117,7 +125,7 @@ public class AppCommon extends AbastractBase{
 	
 	/**
 	 * 输入法切换
-	 * author:panyongjun
+	 * author:mazy
 	 * date:2020年1月3日
 	 */
 	public void imeSwith(String ime, String udid) throws Throwable{
@@ -129,7 +137,7 @@ public class AppCommon extends AbastractBase{
 	 * click事件
 	 * @throws Throwable
 	 * @param xpath
-	 * @author: 爱吃苹果的鱼   
+	 * @author: mazy   
 	 * @date: 2020年4月12日
 	 */
 	public void eleClickByXpath(String xpath) throws Throwable{
@@ -147,7 +155,7 @@ public class AppCommon extends AbastractBase{
 	 * click事件
 	 * @throws Throwable
 	 * @param xpath
-	 * @author: 爱吃苹果的鱼   
+	 * @author: mazy   
 	 * @date: 2020年4月12日
 	 */
 	public void eleClickByClassName(String className) throws Throwable{
@@ -165,7 +173,7 @@ public class AppCommon extends AbastractBase{
 	 * click事件
 	 * @throws Throwable
 	 * @param xpath
-	 * @author: 爱吃苹果的鱼   
+	 * @author: mazy   
 	 * @date: 2020年4月12日
 	 */
 	public void eleClickById(String id) throws Throwable{
@@ -180,10 +188,10 @@ public class AppCommon extends AbastractBase{
 	}
 	
 	/**
-	 * click事件
+	 * 输入指定text
 	 * @throws Throwable
 	 * @param xpath
-	 * @author: 爱吃苹果的鱼   
+	 * @author: mazy   
 	 * @date: 2020年4月12日
 	 */
 	public void txtBoxSendValue(MobileElement ele, String txt) throws Throwable{
@@ -197,7 +205,7 @@ public class AppCommon extends AbastractBase{
 	 * @param id
 	 * @return
 	 * @throws Throwable
-	 * @author: 爱吃苹果的鱼   
+	 * @author: mazy   
 	 * @date: 2020年4月12日
 	 */
 	public MobileElement eleGetById(String id) throws Throwable{
@@ -209,7 +217,7 @@ public class AppCommon extends AbastractBase{
 	 * @param id
 	 * @return
 	 * @throws Throwable
-	 * @author: 爱吃苹果的鱼   
+	 * @author: mazy   
 	 * @date: 2020年4月12日
 	 */
 	public List<MobileElement> eleListsGetById(String id) throws Throwable{
@@ -218,10 +226,10 @@ public class AppCommon extends AbastractBase{
 	
 	/**
 	 * ele 获取
-	 * @param id
+	 * @param className
 	 * @return
 	 * @throws Throwable
-	 * @author: 爱吃苹果的鱼   
+	 * @author: mazy   
 	 * @date: 2020年4月12日
 	 */
 	public MobileElement eleGetByClassName(String className) throws Throwable{
@@ -230,10 +238,10 @@ public class AppCommon extends AbastractBase{
 	
 	/**
 	 * ele list 获取
-	 * @param id
+	 * @param className
 	 * @return
 	 * @throws Throwable
-	 * @author: 爱吃苹果的鱼   
+	 * @author: mazy   
 	 * @date: 2020年4月12日
 	 */
 	public List<MobileElement> eleListsGetByClassName(String className) throws Throwable{
@@ -242,10 +250,10 @@ public class AppCommon extends AbastractBase{
 	
 	/**
 	 * ele 获取
-	 * @param id
+	 * @param linkTxt
 	 * @return
 	 * @throws Throwable
-	 * @author: 爱吃苹果的鱼   
+	 * @author: mazy   
 	 * @date: 2020年4月12日
 	 */
 	public MobileElement eleGetByLinkText(String linkTxt) throws Throwable{
@@ -254,10 +262,10 @@ public class AppCommon extends AbastractBase{
 	
 	/**
 	 * ele list 获取
-	 * @param id
+	 * @param linkTxt
 	 * @return
 	 * @throws Throwable
-	 * @author: 爱吃苹果的鱼   
+	 * @author: mazy   
 	 * @date: 2020年4月12日
 	 */
 	public List<MobileElement> eleListsGetByLinkText(String linkTxt) throws Throwable{
@@ -266,10 +274,10 @@ public class AppCommon extends AbastractBase{
 	
 	/**
 	 * ele 获取
-	 * @param id
+	 * @param name
 	 * @return
 	 * @throws Throwable
-	 * @author: 爱吃苹果的鱼   
+	 * @author: mazy   
 	 * @date: 2020年4月12日
 	 */
 	public MobileElement eleGetByName(String name) throws Throwable{
@@ -278,10 +286,10 @@ public class AppCommon extends AbastractBase{
 	
 	/**
 	 * ele list 获取
-	 * @param id
+	 * @param name
 	 * @return
 	 * @throws Throwable
-	 * @author: 爱吃苹果的鱼   
+	 * @author: mazy   
 	 * @date: 2020年4月12日
 	 */
 	public List<MobileElement> eleListsGetByName(String name) throws Throwable{
@@ -290,10 +298,10 @@ public class AppCommon extends AbastractBase{
 	
 	/**
 	 * ele  获取
-	 * @param id
+	 * @param partlinkTxt
 	 * @return
 	 * @throws Throwable
-	 * @author: 爱吃苹果的鱼   
+	 * @author: mazy   
 	 * @date: 2020年4月12日
 	 */
 	public MobileElement eleGetByPartialLinkText(String partlinkTxt) throws Throwable{
@@ -302,10 +310,10 @@ public class AppCommon extends AbastractBase{
 	
 	/**
 	 * ele list 获取
-	 * @param id
+	 * @param partlinkTxt
 	 * @return
 	 * @throws Throwable
-	 * @author: 爱吃苹果的鱼   
+	 * @author: mazy   
 	 * @date: 2020年4月12日
 	 */
 	public List<MobileElement> eleListsGetByPartialLinkText(String partlinkTxt) throws Throwable{
@@ -314,10 +322,10 @@ public class AppCommon extends AbastractBase{
 	
 	/**
 	 * ele 获取
-	 * @param id
+	 * @param tagName
 	 * @return
 	 * @throws Throwable
-	 * @author: 爱吃苹果的鱼   
+	 * @author: mazy   
 	 * @date: 2020年4月12日
 	 */
 	public MobileElement eleGetByTagName(String tagName) throws Throwable{
@@ -326,10 +334,10 @@ public class AppCommon extends AbastractBase{
 	
 	/**
 	 * ele list 获取
-	 * @param id
+	 * @param tagName
 	 * @return
 	 * @throws Throwable
-	 * @author: 爱吃苹果的鱼   
+	 * @author: mazy   
 	 * @date: 2020年4月12日
 	 */
 	public List<MobileElement> eleListsGetByTagName(String tagName) throws Throwable{
@@ -338,10 +346,10 @@ public class AppCommon extends AbastractBase{
 	
 	/**
 	 * ele 获取
-	 * @param id
+	 * @param xPath
 	 * @return
 	 * @throws Throwable
-	 * @author: 爱吃苹果的鱼   
+	 * @author: mazy   
 	 * @date: 2020年4月12日
 	 */
 	public MobileElement eleGetByXPath(String xPath) throws Throwable{
@@ -350,10 +358,10 @@ public class AppCommon extends AbastractBase{
 	
 	/**
 	 * ele list 获取
-	 * @param id
+	 * @param xPath
 	 * @return
 	 * @throws Throwable
-	 * @author: 爱吃苹果的鱼   
+	 * @author: mazy   
 	 * @date: 2020年4月12日
 	 */
 	public List<MobileElement> eleListsGetByXPath(String xPath) throws Throwable{
@@ -362,7 +370,7 @@ public class AppCommon extends AbastractBase{
 	
     /**
      * swipe to up
-     * author:panyongjun
+     * author:mazy
      * date:2019年8月14日
      */	
     public void swipeUp() {
@@ -378,7 +386,7 @@ public class AppCommon extends AbastractBase{
 
     /**
      * swipe to up
-     * author:panyongjun
+     * author:mazy
      * date:2019年8月14日
      */	
     public void swipeUp(int times) {
@@ -389,7 +397,8 @@ public class AppCommon extends AbastractBase{
     
     /**
      * swipe to down
-     * author:panyongjun
+     * 根据爱空间APP做了适用，滑动最左侧部分防止误触
+     * author:mazy
      * date:2019年8月14日
      */
     public void swipeDown() {
@@ -398,13 +407,13 @@ public class AppCommon extends AbastractBase{
         int width = size.width;
         @SuppressWarnings("rawtypes")
 		TouchAction act = new TouchAction(appHandler);
-        act.longPress(PointOption.point(width / 2, height - 100))
-                .moveTo(PointOption.point(width / 2, 100)).release().perform();
+        act.longPress(PointOption.point(20, height*4/5))
+                .moveTo(PointOption.point(20, height/5)).release().perform();
     }
 
     /**
      * swipe to down
-     * author:panyongjun
+     * author:mazy
      * date:2019年8月14日
      */
     public void swipeDown(int times) {
@@ -415,7 +424,7 @@ public class AppCommon extends AbastractBase{
     
     /**
      * swipe to left
-     * author:panyongjun
+     * author:mazy
      * date:2019年8月14日
      */
     public void swipeLeft() {
@@ -430,7 +439,7 @@ public class AppCommon extends AbastractBase{
     
     /**
      * swipe to left
-     * author:panyongjun
+     * author:mazy
      * date:2019年8月14日
      */
     public void swipeLeft(int times) {
@@ -441,7 +450,7 @@ public class AppCommon extends AbastractBase{
     
     /**
      * swipe to right
-     * author:panyongjun
+     * author:mazy
      * date:2019年8月14日
      */  
 	public void swipeRight() {
@@ -456,7 +465,7 @@ public class AppCommon extends AbastractBase{
 	
     /**
      * swipe to right
-     * author:panyongjun
+     * author:mazy
      * date:2019年8月14日
      */ 
     public void swipeRight(int times) {

@@ -22,7 +22,7 @@ import com.automation.listener.Log4jLogger;
 
 /**
  * web/h5页面初始化类
- * @author 爱吃苹果的鱼
+ * @author mazy
  *
  */
 public class WebDriverManager {
@@ -33,9 +33,10 @@ public class WebDriverManager {
 	
 	/**
 	 * broser setting and driver create
+	 * 根据不同的浏览器类型，取lib下的对应driver
 	 * @param browserType
 	 * @return
-	 * @author: 爱吃苹果的鱼   
+	 * @author: mazy   
 	 */
 	private RemoteWebDriver browserSet(String browserType){
 		if (browserType.equalsIgnoreCase("firefox")) {
@@ -45,6 +46,8 @@ public class WebDriverManager {
 			driver = createIEDriver();
 		} 
 		if (browserType.equalsIgnoreCase("chrome")) {
+			
+			
 			driver = createChromeDriver();
 		} 
 		if (browserType.equalsIgnoreCase("opera")) {
@@ -58,29 +61,33 @@ public class WebDriverManager {
 	
 	/**
 	 * opera driver create
+	 * 取Opera浏览器的驱动，DesiredCapabilities可以不进行定义
 	 * @return
-	 * @author: 爱吃苹果的鱼   
+	 * @author: mazy   
 	 * @date: 2020年4月13日
 	 */
 	@SuppressWarnings("deprecation")
 	private RemoteWebDriver createOperaDriver(){
 		DesiredCapabilities dr = DesiredCapabilities.operaBlink();
-		ChromeOptions options = new ChromeOptions();
-		options.setBinary(System.getProperty("browserPath"));
-		dr.setCapability(OperaOptions.CAPABILITY, options);
+		OperaOptions option = new OperaOptions();
+		option.setBinary(System.getProperty("browserPath"));
+		dr.setCapability(OperaOptions.CAPABILITY, option);
 		System.setProperty("webdriver.opera.driver", System.getProperty("user.dir") + "/lib/opreadriver.exe");
 		dr.setPlatform(Platform.WINDOWS);
-		driver = new OperaDriver(dr);
+		option.merge(dr);
+		driver = new OperaDriver(option);
 		return driver;
 	}
 	
 	/**
 	 * h5 in chrome driver create
+	 * 取内置Chrome的h5页面驱动
 	 * @return
-	 * @author: 爱吃苹果的鱼   
+	 * @author: mazy   
 	 */
-	@SuppressWarnings({ "deprecation", "static-access" })
+	@SuppressWarnings({ "static-access" })
 	private RemoteWebDriver createH5ChromeDriver(){
+		ChromeOptions options = new ChromeOptions();
 		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/lib/chromedriver.exe");
         Map<String, String> mobileEmulation = new HashMap<String, String>();
         mobileEmulation.put("deviceName", baseAct.emulationName);
@@ -88,20 +95,27 @@ public class WebDriverManager {
         chromeOptions.put("mobileEmulation", mobileEmulation);     
         DesiredCapabilities capabilities = DesiredCapabilities.chrome();       
         capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
-		driver = new ChromeDriver(capabilities);
+        options.merge(capabilities);
+		driver = new ChromeDriver(options);
 		return driver;
 	}
 	
 	/**
 	 * chrome driver create
+	 * 取Chrome的驱动
 	 * @return
-	 * @author: 爱吃苹果的鱼   
+	 * @author: mazy   
 	 */
 	private RemoteWebDriver createChromeDriver(){
 		ChromeOptions options = new ChromeOptions();		
 		Map<String, Object> prefs = new HashMap<String, Object>();
 		prefs.put("download.prompt_for_download", true);
 		options.setExperimentalOption("prefs", prefs);
+		
+		//设置selenium后台运行	
+		//方法一：通过setHeadless方法直接设置
+		options.setHeadless(true);
+		
 		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/lib/chromedriver.exe");
 		driver = new ChromeDriver(options);
 		return driver;
@@ -109,8 +123,9 @@ public class WebDriverManager {
 	
 	/**
 	 * firefox driver create
+	 * 取Firefox的驱动
 	 * @return
-	 * @author: 爱吃苹果的鱼   
+	 * @author: mazy   
 	 */
 	private RemoteWebDriver createGeckodriver() {
 		System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + "/lib/geckodriver.exe");
@@ -120,22 +135,25 @@ public class WebDriverManager {
 	
 	/**
 	 * ie driver create
+	 * 取IE的驱动
 	 * @return
-	 * @author: 爱吃苹果的鱼   
+	 * @author: mazy   
 	 */
 	@SuppressWarnings("deprecation")
 	private InternetExplorerDriver createIEDriver(){
 		System.setProperty("webdriver.ie.driver", System.getProperty("user.dir")+"/lib/IEDriverServer.exe");  //32 bit
 		DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();  
+		//避免还需要手动取消IE浏览器的“保护模式”
 		ieCapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
 		return new InternetExplorerDriver(InternetExplorerDriverService.createDefaultService(), ieCapabilities);
 	}
 	
 	/**
 	 * web driver initialize
+	 * 初始化web的驱动
 	 * @param browserType
 	 * @throws MalformedURLException
-	 * @author: 爱吃苹果的鱼   
+	 * @author: mazy   
 	 */
 	public void initNewWebDriver(final String browserType) throws MalformedURLException {
 		logger.info("Will start the web driver for the WEB case");
@@ -152,7 +170,8 @@ public class WebDriverManager {
 	
 	/**
 	 * web driver close
-	 * @author: 爱吃苹果的鱼   
+	 * 关闭驱动
+	 * @author: mazy   
 	 */
     public void closeDriver() {
     	try{
@@ -168,17 +187,20 @@ public class WebDriverManager {
     
     /**
      * web driver return 
+     * 对webdriver驱动进行初始化
      * @param browserType
      * @return
      * @throws Throwable
-     * @author: 爱吃苹果的鱼   
+     * @author: mazy   
      */
     public RemoteWebDriver getCurrentWebDriver(String browserType) throws Throwable {
-    	// Get driver mode
+    	// Get driver mode,获取到当前浏览器的类型,并设置了重试三次保证驱动启动成功机制
     	String mode = System.getProperty("HANDLE_MODE");
+    	
     	if (StringUtils.isBlank(mode)) {
     		mode = WebConstant.handleMode;
     	}
+    	
     	if ("Selenium".equalsIgnoreCase(mode)){
     		driver = null;
     		initNewWebDriver(browserType);
