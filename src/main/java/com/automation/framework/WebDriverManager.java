@@ -114,7 +114,7 @@ public class WebDriverManager {
 		
 		//设置selenium后台运行	
 		//方法一：通过setHeadless方法直接设置
-		options.setHeadless(true);
+		//options.setHeadless(true);
 		
 		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/lib/chromedriver.exe");
 		driver = new ChromeDriver(options);

@@ -1,19 +1,24 @@
 package com.automation.framework;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.ITestContext;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
 
 import com.automation.common.AppCommon;
 import com.automation.common.WebCommon;
@@ -97,6 +102,7 @@ public class WebTestNGBase extends AbastractBase{
 	public void beforeClass() throws Throwable {
 		handlerModeGet(driverHandlerMode);
 		browserPathSet(driverBrowserPath);
+		osorderList.clear();
 	}
 	
 	/**
@@ -147,7 +153,8 @@ public class WebTestNGBase extends AbastractBase{
 					web.alertAccept(false);
 				}
 				driver.manage().deleteAllCookies();
-				driver.quit();				
+				driver.quit();	
+				
 			}}
 		} catch(Exception e){
 			exceptionErrorHandle(e);
@@ -160,14 +167,29 @@ public class WebTestNGBase extends AbastractBase{
 	 * @throws Throwable
 	 * @author: mazy   
 	 */
-//	@AfterSuite(groups = "all")
+	@AfterSuite(groups = "all")
 	public void afterSuite() throws Throwable {
 		try{
-			String reportHtml = System.getProperty("user.dir") + File.separator + "test-output" + File.separator + "index.html";
-			Runtime.getRuntime().exec("cmd   /c   start  " + reportHtml);
+		//	String reportHtml = System.getProperty("user.dir") + File.separator + "test-output" + File.separator + "index.html";
+		//	Runtime.getRuntime().exec("cmd   /c   start  " + reportHtml);
+			Date date = new Date();
+			SimpleDateFormat adf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String datemes = adf.format(date);
+			datemes = "最新创建下列订单  " + datemes + "  :";
+			
+			printTargetInfoCont(datemes,"C:\\Users\\mazhaoyang\\Desktop\\order\\oneShopOrderList.txt");
+			for(int i=0;i<osorderList.size();i++){
+				printTargetInfoCont(osorderList.get(i).toString(),"C:\\Users\\mazhaoyang\\Desktop\\order\\oneShopOrderList.txt");
+			}
+			
 		}catch(Exception ex){
 			exceptionErrorHandle(ex);
 		}
+	}
+	
+	@AfterClass
+	public void afterClass() throws IOException{
+		
 	}
 	
 	/**

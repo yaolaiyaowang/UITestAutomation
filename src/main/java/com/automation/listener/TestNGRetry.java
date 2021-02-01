@@ -14,7 +14,7 @@ public class TestNGRetry implements IRetryAnalyzer {
 	
     Log4jLogger logger = new Log4jLogger();
     
-    private int maxRetryCount = 2;
+    private int maxRetryCount = 0;
     private int retryCount = 0;
 
     @Override

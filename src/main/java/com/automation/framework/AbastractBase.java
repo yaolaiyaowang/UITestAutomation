@@ -19,6 +19,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.automation.entities.OneShopOrder;
 import com.automation.listener.Log4jLogger;
 
 import io.appium.java_client.AppiumDriver;
@@ -44,6 +45,7 @@ public class AbastractBase {
 	public static List<String> caseScreenShotList1 = new ArrayList<String>();//测试结果截图
 	public static List<String> phoneNumberList = new ArrayList<String>();//预约的手机号
 	public static List<String> nameList = new ArrayList<String>();//预约人姓名
+	public static List<OneShopOrder> osorderList = new ArrayList<OneShopOrder>();//预约人姓名
 	public String testReportName = "";//测试report	
 	public static String emulationName = "";//H5 emulation
 	public String testEnv = "";//test-测试环境，pre-预生产环境，pro-生产环境

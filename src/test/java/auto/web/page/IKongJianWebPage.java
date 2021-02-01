@@ -19,7 +19,7 @@ import com.automation.entities.OneShopOrder;
  * @Date           2021年1月20日 上午10:46:51 
  */
 public class IKongJianWebPage extends WebCommon{
-	OneShopOrder osorder = new OneShopOrder();
+	OneShopOrder osorder;
 	
 	public IKongJianWebPage(RemoteWebDriver driver) {
 		super(driver);
@@ -50,6 +50,64 @@ public class IKongJianWebPage extends WebCommon{
 	}
 	
 	
+	
+	By PhoneNumBy = By.name("mobile");
+	By UserNameBy = By.name("userName");
+	By provincepreBy = By.id("province");
+	By cityPreBy = By.id("city");
+	By regionPreBy = By.id("regionId");
+	By planDecorateDateBy = By.name("planDecorateDate");
+	By areaCodePreBy = By.name("areaCode");
+	By shopNoPreBy = By.name("shopNo");
+	By subBtnBy = By.id("subBtn");
+	
+	/*
+	 * 建立预约单
+	 * */
+	
+	public void createPreOrder() throws Throwable{
+		osorder = new OneShopOrder();
+		toURL("https://ncrm.stage.ikongjian.com/order/addOrder");
+		
+		String phoneNum = phoneNumberGet();
+		phoneNumberList.add(phoneNum);
+		
+		osorder.setPhoneNumber(phoneNum);
+		osorder.setName(phoneNum);
+		osorderList.add(osorder);
+		//输入手机号和姓名
+		txtBoxSendValue(PhoneNumBy, phoneNum);
+		txtBoxSendValue(UserNameBy, phoneNum);
+		System.out.println(phoneNum);
+		
+		//选择地区
+		doOptionSelect(provinceBy,"0001");
+		doOptionSelect(cityBy,"00010001");
+		doOptionSelect(regionIdBy,"6");	
+		
+		
+		//地图选址
+		eleClickBy(communityBy);
+		driver.switchTo().frame(driver.findElement(mapFrameBy));
+		txtBoxSendValue(tipinputBy, "育慧里");
+		eleClickBy(quitBtnBy);
+		eleClickBy(queryAddressBy);
+		eleClickBy(sureMyButtonBy);
+		
+		
+		//选择店		
+		doOptionSelect(areaCodePreBy,"101");
+		doOptionSelect(shopNoPreBy,"SS043");
+		
+		//设置预约日期
+		txtBoxSendValue(planDecorateDateBy, "2021-08-01");
+		
+		
+		
+		eleClickBy(subBtnBy);
+		
+	}
+	
 	By crmBy = By.xpath("//a[contains(text(),'crm系统')]");
 	By preorderManageBy = By.xpath("//span[contains(text(),'预约单管理')]");
 	
@@ -60,6 +118,9 @@ public class IKongJianWebPage extends WebCommon{
 	By searchBy = By.xpath("//input[@value='查询']");
 	
 	By preorderPageBy = By.xpath("//a[contains(text(),'YY2021')]");
+	
+	
+	
 	
 	
 	/*
@@ -108,6 +169,7 @@ public class IKongJianWebPage extends WebCommon{
 	public void changeOrderMessage(int phoneindex){
 		
 		try {
+			osorder = new OneShopOrder();
 			
 			eleClickBy(preorderListBy);
 			String name = userNameGet();
@@ -134,7 +196,8 @@ public class IKongJianWebPage extends WebCommon{
 			
 			osorder.setDDOrder(eleTxtGet(DDOrderNumBy));
 			osorder.setHTOrder(eleTxtGet(HTOrderNumBy));
-			printTargetInfoCont(osorder.toString(),"C:\\Users\\mazhaoyang\\Desktop\\order\\oneShopOrderList.txt");
+		
+			osorderList.add(osorder);
 			
 			driver.switchTo().defaultContent();
 			Thread.sleep(1000);
