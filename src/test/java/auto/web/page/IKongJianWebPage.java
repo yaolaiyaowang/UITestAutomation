@@ -8,6 +8,8 @@ import java.util.Properties;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import com.automation.common.WebCommon;
@@ -35,6 +37,7 @@ public class IKongJianWebPage extends WebCommon{
 	By usernameBy = By.name("username");
 	By passwordBy = By.name("password");
 	By login = By.xpath("//input[@value='登录']");
+	By swipBy = By.id("nc_1_n1z");
 	
 	
 	/*
@@ -48,6 +51,8 @@ public class IKongJianWebPage extends WebCommon{
 			toURL("https://uc."+envirment+".ikongjian.com/login");
 			txtBoxSendValue(usernameBy, name);
 			txtBoxSendValue(passwordBy, password);
+			Actions action = new Actions(driver);
+			action.dragAndDropBy(driver.findElement(swipBy), 287, 0).perform();
 			eleClickBy(login);
 			Thread.sleep(3000);
 			

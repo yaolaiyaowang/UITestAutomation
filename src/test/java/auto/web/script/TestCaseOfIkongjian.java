@@ -32,7 +32,7 @@ public class TestCaseOfIkongjian extends WebTestNGBase{
 			IKongJianWebPage ikongjianpage = new IKongJianWebPage(driver);
 			caseName = "完成预约单到分配设计师的流程";
 			whichCaseIsRun(caseName);
-			ikongjianpage.loginIkongjian("wangliang1","space521");
+			ikongjianpage.loginIkongjian("wangliang1","Space521");
 			
 			ikongjianpage.openOrderPage();
 			
@@ -66,7 +66,7 @@ public class TestCaseOfIkongjian extends WebTestNGBase{
 			properties.load(inputStream);
 			String myOrderListSize = properties.getProperty("myOrderListSize");
 			int myOrderListSizeInt = Integer.parseInt(myOrderListSize);
-			ikongjianpage.loginIkongjian("wangliang1","space521");
+			ikongjianpage.loginIkongjian("wangliang1","Space521");
 			
 			for(int inum=0;inum<myOrderListSizeInt;inum++){
 				ikongjianpage.createPreOrder();
@@ -110,7 +110,7 @@ public class TestCaseOfIkongjian extends WebTestNGBase{
 			caseName = "缴纳定金";
 			whichCaseIsRun(caseName);
 			
-			ikongjianpage.loginIkongjian("wangliang1","space521");
+			ikongjianpage.loginIkongjian("wangliang1","Space521");
 			
 			for(int j=0;j<phoneNumberList.size();j++){
 				ikongjianpage.payPreMoney(j);
@@ -132,7 +132,7 @@ public class TestCaseOfIkongjian extends WebTestNGBase{
 			caseName = "约合开工、分配设计师";
 			whichCaseIsRun(caseName);
 			
-			ikongjianpage.loginIkongjian("wangliang1","space521");
+			ikongjianpage.loginIkongjian("wangliang1","Space521");
 			
 			for(int k=0;k<phoneNumberList.size();k++){
 				ikongjianpage.moveTheOrder(k);
