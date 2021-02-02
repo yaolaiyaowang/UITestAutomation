@@ -88,7 +88,7 @@ public class TestCaseOfIkongjian extends WebTestNGBase{
 			whichCaseIsRun(caseName);
 			
 			osorderList.clear();
-			ikongjianpage.loginIkongjian("wangliang1","space521");
+			ikongjianpage.loginIkongjian("wangliang1","Space521");
 			
 			ikongjianpage.openOrderPage();
 			
