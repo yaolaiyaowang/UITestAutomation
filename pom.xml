@@ -99,6 +99,10 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <xmlFileName></xmlFileName>
+        <username>admin</username>
+        <testEnv>stage</testEnv>
+        <myOrderListSize>1</myOrderListSize>
   </properties>
 
   <dependencies>  
