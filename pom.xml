@@ -6,15 +6,7 @@
 	<build>
 <!-- 		<defaultGoal>compile</defaultGoal>
 		<pluginManagement> -->
-		<resources>
-           <resource>
-                <directory>${project.basedir}/properties</directory>
-                <filtering>true</filtering>
-                <includes>
-                    <include>*.properties</include>
-                </includes>
-            </resource>
-        </resources>
+	
 			<plugins>
 				<!-- build-helper-maven-plugin, 设置多个源文件夹 -->
                 <plugin>
