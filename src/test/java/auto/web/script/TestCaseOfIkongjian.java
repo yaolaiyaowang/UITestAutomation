@@ -76,7 +76,13 @@ public class TestCaseOfIkongjian extends WebTestNGBase{
 			properties.load(inputStream);
 			String myOrderListSize = properties.getProperty("myOrderListSize");
 			int myOrderListSizeInt = Integer.parseInt(myOrderListSize);
-			ikongjianpage.loginIkongjian("wangliang1","Space521");
+			String testEnvironment = properties.getProperty("Environment");
+			
+			if(testEnvironment.equalsIgnoreCase("stage")){
+				ikongjianpage.loginIkongjian("wangliang1","Space521");
+			}else if(testEnvironment.equalsIgnoreCase("test7")){
+				ikongjianpage.loginIkongjian("superman","space521");
+			}
 			
 			for(int inum=0;inum<myOrderListSizeInt;inum++){
 				ikongjianpage.createPreOrder();

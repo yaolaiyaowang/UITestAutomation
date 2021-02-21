@@ -182,8 +182,7 @@ public class WebTestNGBase extends AbastractBase{
 			
 			for(int i=0;i<osorderList.size();i++){
 				printTargetInfoCont(osorderList.get(i).toString(),"C:\\Users\\mazhaoyang\\Desktop\\order\\oneShopOrderList.txt");
-				datemes = datemes + osorderList.get(i).toString();
-				printTargetInfoCont(datemes,FilePath);
+				printTargetInfoCont(datemes+ osorderList.get(i).toString(),FilePath);
 			}
 			
 		}catch(Exception ex){
