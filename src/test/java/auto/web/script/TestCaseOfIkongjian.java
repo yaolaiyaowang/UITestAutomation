@@ -29,10 +29,20 @@ public class TestCaseOfIkongjian extends WebTestNGBase{
 	@Test(alwaysRun=false, groups={"auto.demo.test.ikongjian"}, priority=5,timeOut=MAX_EXCUTE_TIME)
 	public void caseOfTotal()throws FrameworkException{
 		try{
+			InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("OrderUsefulInfo.properties");
+			Properties properties = new Properties();
+			properties.load(inputStream);
+			String myOrderListSize = properties.getProperty("myOrderListSize");
+			int myOrderListSizeInt = Integer.parseInt(myOrderListSize);
+			
 			IKongJianWebPage ikongjianpage = new IKongJianWebPage(driver);
 			caseName = "完成预约单到分配设计师的流程";
 			whichCaseIsRun(caseName);
 			ikongjianpage.loginIkongjian("wangliang1","Space521");
+			
+			for(int inum=0;inum<myOrderListSizeInt;inum++){
+				ikongjianpage.createPreOrder();
+			}
 			
 			ikongjianpage.openOrderPage();
 			
