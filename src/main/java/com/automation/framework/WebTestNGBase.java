@@ -188,6 +188,7 @@ public class WebTestNGBase extends AbastractBase{
 				printTargetInfoCont(newUserInfo,FilePath);
 			}
 			printTargetInfoCont("------end------",FilePath);
+			Thread.sleep(10*1000);
 			
 		}catch(Exception ex){
 			exceptionErrorHandle(ex);
