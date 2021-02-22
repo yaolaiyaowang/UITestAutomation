@@ -99,12 +99,22 @@ public class TestCaseOfIkongjian extends WebTestNGBase{
 	@Test(alwaysRun=false, groups={"auto.demo.test.ikongjian.two"}, priority=2,timeOut=MAX_EXCUTE_TIME)
 	public void caseOfCreateOrder()throws FrameworkException{
 		try{
+			InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("OrderUsefulInfo.properties");
+		    Properties properties = new Properties();
+		    properties.load(inputStream);
+		    String testEnvironment = properties.getProperty("Environment");
+		    
 			IKongJianWebPage ikongjianpage = new IKongJianWebPage(driver);
 			caseName = "生成订单";
 			whichCaseIsRun(caseName);
 			
 			osorderList.clear();
-			ikongjianpage.loginIkongjian("wangliang1","Space521");
+			
+			if(testEnvironment.equalsIgnoreCase("stage")){
+				ikongjianpage.loginIkongjian("wangliang1","Space521");
+			}else if(testEnvironment.equalsIgnoreCase("test7")){
+				ikongjianpage.loginIkongjian("superman","space521");
+			}
 			
 			ikongjianpage.openOrderPage();
 			
@@ -122,11 +132,20 @@ public class TestCaseOfIkongjian extends WebTestNGBase{
 	@Test(alwaysRun=false, groups={"auto.demo.test.ikongjian.three"}, priority=3,timeOut=MAX_EXCUTE_TIME)
 	public void caseOfBook()throws FrameworkException{
 		try{
+			InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("OrderUsefulInfo.properties");
+		    Properties properties = new Properties();
+		    properties.load(inputStream);
+		    String testEnvironment = properties.getProperty("Environment");
+		    
 			IKongJianWebPage ikongjianpage = new IKongJianWebPage(driver);
 			caseName = "缴纳定金";
 			whichCaseIsRun(caseName);
 			
-			ikongjianpage.loginIkongjian("wangliang1","Space521");
+			if(testEnvironment.equalsIgnoreCase("stage")){
+				ikongjianpage.loginIkongjian("wangliang1","Space521");
+			}else if(testEnvironment.equalsIgnoreCase("test7")){
+				ikongjianpage.loginIkongjian("superman","space521");
+			}
 			
 			for(int j=0;j<phoneNumberList.size();j++){
 				ikongjianpage.payPreMoney(j);
@@ -144,11 +163,20 @@ public class TestCaseOfIkongjian extends WebTestNGBase{
 	@Test(alwaysRun=false, groups={"auto.demo.test.ikongjian.four"}, priority=4,timeOut=MAX_EXCUTE_TIME)
 	public void caseOfSetDate()throws FrameworkException{
 		try{
+			InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("OrderUsefulInfo.properties");
+		    Properties properties = new Properties();
+		    properties.load(inputStream);
+		    String testEnvironment = properties.getProperty("Environment");
+		    
 			IKongJianWebPage ikongjianpage = new IKongJianWebPage(driver);
 			caseName = "约合开工、分配设计师";
 			whichCaseIsRun(caseName);
 			
-			ikongjianpage.loginIkongjian("wangliang1","Space521");
+			if(testEnvironment.equalsIgnoreCase("stage")){
+				ikongjianpage.loginIkongjian("wangliang1","Space521");
+			}else if(testEnvironment.equalsIgnoreCase("test7")){
+				ikongjianpage.loginIkongjian("superman","space521");
+			}
 			
 			for(int k=0;k<phoneNumberList.size();k++){
 				ikongjianpage.moveTheOrder(k);

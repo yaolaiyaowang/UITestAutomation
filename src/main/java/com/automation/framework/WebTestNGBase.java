@@ -152,9 +152,9 @@ public class WebTestNGBase extends AbastractBase{
 				if(web.alertIsPresent()){
 					web.alertAccept(false);
 				}
+					
 				driver.manage().deleteAllCookies();
-				driver.quit();	
-				
+				driver.quit();
 			}}
 		} catch(Exception e){
 			exceptionErrorHandle(e);
@@ -187,6 +187,7 @@ public class WebTestNGBase extends AbastractBase{
 				printTargetInfoCont(osorderList.get(i).toString(),FilePath);
 			}
 			printTargetInfoCont("------end------",FilePath);
+			
 		}catch(Exception ex){
 			exceptionErrorHandle(ex);
 		}
