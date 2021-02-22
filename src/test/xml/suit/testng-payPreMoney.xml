@@ -15,9 +15,7 @@
   <test name="web">
     <groups>
 		<define name="all">
-			<include name="auto.demo.test.ikongjian.one" />
-			<include name="auto.demo.test.ikongjian.two" />
-			<include name="auto.demo.test.ikongjian.three" />
+			<include name="auto.demo.test.ikongjian.groupThree" />
 		</define>
 		<run>  
 			<include name="all"/> 
