@@ -3,6 +3,7 @@
  */
 package auto.web.page;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
@@ -308,45 +309,53 @@ public class IKongJianWebPage extends WebCommon{
 	 * 
 	 * */
 	
-	public void moveTheOrder(int phoneindex) throws Throwable{
-		properties.load(inputStream);
-		 String envirment = properties.getProperty("Environment");
-		 
-		toURL("https://ncrm."+envirment+".ikongjian.com/decorateOrder/list");
-		txtBoxSendValue(orderMobileBy, phoneNumberList.get(phoneindex));
-		//txtBoxSendValue(orderMobileBy,"18774691106");
-		eleClickBy(HTOrderPayBy);
-		eleClickBy(DDOrderMesBy);
-		eleClickBy(preOnWorkBy);
-		txtBoxSendValue(dateMoonBy, "2021-08");
-		eleClickBy(dateMoonSureBy);
-		doOptionSelect(dateSeBy,"1");
-		driver.switchTo().defaultContent();
-		eleClickBy(updateCouponBy);
-		driver.switchTo().alert().accept();		
-		eleClickBy(editOrderBy);
-		eleClickBy(communityBy);
-		driver.switchTo().frame(driver.findElement(mapFrameBy));
-		txtBoxSendValue(tipinputBy, "育慧里");
-		eleClickBy(quitBtnBy);
-		eleClickBy(queryAddressBy);
-		eleClickBy(sureMyButtonBy);
-		txtBoxSendValue(buildingBy, "5");
-		txtBoxSendValue(unitBy, "4");
-		txtBoxSendValue(roomBy, "1101");
-		doOptionSelect(houseCategoryBy,"1");
-		doOptionSelect(houseTypeBy,"HX004");
-		txtBoxSendValue(areaBy, "90");
-		doOptionSelect(housePropBy,"1");
-		eleClickBy(changeHouseBy);
-		eleClickBy(canBtnBy);
+	public void moveTheOrder(int phoneindex){
+		try {
+			properties.load(inputStream);
+			 String envirment = properties.getProperty("Environment");
+			 
+				toURL("https://ncrm."+envirment+".ikongjian.com/decorateOrder/list");
+				txtBoxSendValue(orderMobileBy, phoneNumberList.get(phoneindex));
+				//txtBoxSendValue(orderMobileBy,"18774691106");
+				eleClickBy(HTOrderPayBy);
+				eleClickBy(DDOrderMesBy);
+				eleClickBy(preOnWorkBy);
+				txtBoxSendValue(dateMoonBy, "2021-08");
+				eleClickBy(dateMoonSureBy);
+				doOptionSelect(dateSeBy,"1");
+				driver.switchTo().defaultContent();
+				eleClickBy(updateCouponBy);
+				driver.switchTo().alert().accept();		
+				eleClickBy(editOrderBy);
+				eleClickBy(communityBy);
+				driver.switchTo().frame(driver.findElement(mapFrameBy));
+				txtBoxSendValue(tipinputBy, "育慧里");
+				eleClickBy(quitBtnBy);
+				eleClickBy(queryAddressBy);
+				eleClickBy(sureMyButtonBy);
+				txtBoxSendValue(buildingBy, "5");
+				txtBoxSendValue(unitBy, "4");
+				txtBoxSendValue(roomBy, "1101");
+				doOptionSelect(houseCategoryBy,"1");
+				doOptionSelect(houseTypeBy,"HX004");
+				txtBoxSendValue(areaBy, "90");
+				doOptionSelect(housePropBy,"1");
+				eleClickBy(changeHouseBy);
+				eleClickBy(canBtnBy);
+				
+				eleClickBy(allotDesignerBtnBy);
+				eleClickBy(designChBy);
+				eleClickBy(designerBy);
+			//	System.out.println(eleAttrValueGet(updateCouponButBy,"innerHTML"));
+				eleClickBy(updateCouponButBy);
+				eleClickBy(designersureBy);
+			
+		} catch (Throwable e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			Thread.currentThread().interrupt();
+		}
 		
-		eleClickBy(allotDesignerBtnBy);
-		eleClickBy(designChBy);
-		eleClickBy(designerBy);
-	//	System.out.println(eleAttrValueGet(updateCouponButBy,"innerHTML"));
-		eleClickBy(updateCouponButBy);
-		eleClickBy(designersureBy);
 		
 	}
 }
