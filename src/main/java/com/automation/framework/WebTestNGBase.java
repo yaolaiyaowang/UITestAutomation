@@ -184,7 +184,8 @@ public class WebTestNGBase extends AbastractBase{
 			printTargetInfoCont(datemes,FilePath);
 			for(int i=0;i<osorderList.size();i++){
 				printTargetInfoCont(osorderList.get(i).toString(),"C:\\Users\\mazhaoyang\\Desktop\\order\\oneShopOrderList.txt");
-				String newUserInfo = new String(osorderList.get(i).toString().getBytes("UTF-8"),"GBK");
+				String newUserInfo = osorderList.get(i).toString();
+			//	newUserInfo	= new String(newUserInfo.getBytes("UTF-8"),"GBK");
 				printTargetInfoCont(newUserInfo,FilePath);
 			}
 			printTargetInfoCont("------end------",FilePath);
