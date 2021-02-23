@@ -54,6 +54,7 @@ public class IKongJianWebPage extends WebCommon{
 			txtBoxSendValue(passwordBy, password);
 			Actions action = new Actions(driver);
 			action.dragAndDropBy(driver.findElement(swipBy), 287, 0).perform();
+			Thread.sleep(3000);
 			eleClickBy(login);
 			Thread.sleep(3000);
 			
