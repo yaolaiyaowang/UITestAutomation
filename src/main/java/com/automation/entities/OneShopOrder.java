@@ -46,7 +46,7 @@ public class OneShopOrder {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "{name:"+name+",phoneNumber:"+phoneNumber+",DDOrder:"+DDOrder+",HTOrder:"+HTOrder+"}";
+		return "{name:"+name+" ,phoneNumber:"+phoneNumber+",DDOrder:"+DDOrder+",HTOrder:"+HTOrder+"}";
 	}
 	
 

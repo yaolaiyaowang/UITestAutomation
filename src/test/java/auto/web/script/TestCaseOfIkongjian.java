@@ -58,7 +58,7 @@ public class TestCaseOfIkongjian extends WebTestNGBase{
 				ikongjianpage.moveTheOrder(k);
 			}
 			
-			
+			ikongjianpage.doLogOut();
 		}catch (Throwable e) {
 			e.printStackTrace();
 			throw new FrameworkException(e.getMessage());
@@ -88,7 +88,7 @@ public class TestCaseOfIkongjian extends WebTestNGBase{
 				ikongjianpage.createPreOrder();
 			}
 			
-			
+			ikongjianpage.doLogOut();
 			
 		}catch (Throwable e) {
 			e.printStackTrace();
@@ -122,7 +122,7 @@ public class TestCaseOfIkongjian extends WebTestNGBase{
 				ikongjianpage.changeOrderMessage(i);
 			}
 			
-			
+			ikongjianpage.doLogOut();
 		}catch (Throwable e) {
 			e.printStackTrace();
 			throw new FrameworkException(e.getMessage());
@@ -151,7 +151,7 @@ public class TestCaseOfIkongjian extends WebTestNGBase{
 				ikongjianpage.payPreMoney(j);
 			}
 			
-			
+			ikongjianpage.doLogOut();
 			
 		}catch (Throwable e) {
 			e.printStackTrace();
@@ -182,7 +182,7 @@ public class TestCaseOfIkongjian extends WebTestNGBase{
 				ikongjianpage.moveTheOrder(k);
 			}
 			
-			
+			ikongjianpage.doLogOut();
 		}catch (Throwable e) {
 			e.printStackTrace();
 			throw new FrameworkException(e.getMessage());
@@ -221,7 +221,7 @@ public class TestCaseOfIkongjian extends WebTestNGBase{
 				ikongjianpage.changeOrderMessage(i);
 			}
 			
-			
+			ikongjianpage.doLogOut();
 		}catch (Throwable e) {
 			e.printStackTrace();
 			throw new FrameworkException(e.getMessage());
@@ -263,7 +263,7 @@ public class TestCaseOfIkongjian extends WebTestNGBase{
 				ikongjianpage.payPreMoney(j);
 			}
 			
-			
+			ikongjianpage.doLogOut();
 		}catch (Throwable e) {
 			e.printStackTrace();
 			throw new FrameworkException(e.getMessage());
@@ -310,6 +310,7 @@ public class TestCaseOfIkongjian extends WebTestNGBase{
 				ikongjianpage.moveTheOrder(k);
 			}
 			
+			ikongjianpage.doLogOut();
 		}catch (Throwable e) {
 			e.printStackTrace();
 			throw new FrameworkException(e.getMessage());

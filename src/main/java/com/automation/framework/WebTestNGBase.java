@@ -152,7 +152,7 @@ public class WebTestNGBase extends AbastractBase{
 				if(web.alertIsPresent()){
 					web.alertAccept(false);
 				}
-					
+				
 				driver.manage().deleteAllCookies();
 				driver.quit();
 			}}

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<suite name="test-createPreOrderr">
+<suite name="test-createPreOrderr" time-out="3000000">
     <listeners>
   	<listener class-name="com.automation.listener.TestNGListener" />
     <listener class-name="com.automation.listener.RetryListener" />

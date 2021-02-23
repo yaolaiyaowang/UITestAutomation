@@ -42,7 +42,7 @@ public class AbastractBase {
 	protected JavascriptExecutor javascriptExecutor	= null;
 	public static String caseName = "";//用例名
 	public static final long MAX_TIME = 5;
-	public static final long MAX_EXCUTE_TIME = 5 * 10 * 6000;
+	public static final long MAX_EXCUTE_TIME = 5 * 100 * 6000;
 	public static final String TEST_REPORT_OUTPUT_FOLDER = "test-output";
 	public static List<String> caseScreenShotList1 = new ArrayList<String>();//测试结果截图
 	public static List<String> phoneNumberList = new ArrayList<String>();//预约的手机号

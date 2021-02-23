@@ -349,13 +349,19 @@ public class IKongJianWebPage extends WebCommon{
 			//	System.out.println(eleAttrValueGet(updateCouponButBy,"innerHTML"));
 				eleClickBy(updateCouponButBy);
 				eleClickBy(designersureBy);
+				Thread.sleep(1000);
 			
 		} catch (Throwable e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			Thread.currentThread().interrupt();
-		}
+		//	Thread.currentThread().interrupt();
+		}		
 		
-		
+	}
+	
+	
+	By logoutBy = By.xpath("//a[contains(text(),'退出')]");	
+	public void doLogOut() throws Throwable{
+		eleClickBy(logoutBy);
 	}
 }
