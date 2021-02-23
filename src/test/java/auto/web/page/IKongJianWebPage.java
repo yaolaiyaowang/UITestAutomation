@@ -362,6 +362,9 @@ public class IKongJianWebPage extends WebCommon{
 	
 	By logoutBy = By.xpath("//a[contains(text(),'退出')]");	
 	public void doLogOut() throws Throwable{
+		properties.load(inputStream);
+		String envirment = properties.getProperty("Environment");
+		toURL("https://ncrm."+envirment+".ikongjian.com/decorateOrder/list");
 		eleClickBy(logoutBy);
 	}
 }
