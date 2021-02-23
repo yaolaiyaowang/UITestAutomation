@@ -179,7 +179,7 @@ public class WebTestNGBase extends AbastractBase{
 			String userName = properties.getProperty("userName");
 			String Testenv = properties.getProperty("Environment");
 			datemes = userName+"---创建"+Testenv+"环境订单---" + datemes + "  : ";
-			datemes = new String(datemes.getBytes("UTF-8"),"GBK");
+		//	datemes = new String(datemes.getBytes("UTF-8"),"GBK");
 			String FilePath = System.getProperty("user.dir")+"/test-output/oneShopOrderList.txt";
 			printTargetInfoCont(datemes,FilePath);
 			for(int i=0;i<osorderList.size();i++){
