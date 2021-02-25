@@ -38,7 +38,7 @@ public class TestCaseOfIkongjian extends WebTestNGBase{
 			IKongJianWebPage ikongjianpage = new IKongJianWebPage(driver);
 			caseName = "完成预约单到分配设计师的流程";
 			whichCaseIsRun(caseName);
-			ikongjianpage.loginIkongjian("wangliang1","Space521");
+			ikongjianpage.loginIkongjian("superman","space521");
 			
 			for(int inum=0;inum<myOrderListSizeInt;inum++){
 				ikongjianpage.createPreOrder();
@@ -79,7 +79,7 @@ public class TestCaseOfIkongjian extends WebTestNGBase{
 			String testEnvironment = properties.getProperty("Environment");
 			
 			if(testEnvironment.equalsIgnoreCase("stage")){
-				ikongjianpage.loginIkongjian("wangliang1","Space521");
+				ikongjianpage.loginIkongjian("superman","space521");
 			}else if(testEnvironment.equalsIgnoreCase("test7")){
 				ikongjianpage.loginIkongjian("superman","space521");
 			}
@@ -111,7 +111,7 @@ public class TestCaseOfIkongjian extends WebTestNGBase{
 			osorderList.clear();
 			
 			if(testEnvironment.equalsIgnoreCase("stage")){
-				ikongjianpage.loginIkongjian("wangliang1","Space521");
+				ikongjianpage.loginIkongjian("superman","space521");
 			}else if(testEnvironment.equalsIgnoreCase("test7")){
 				ikongjianpage.loginIkongjian("superman","space521");
 			}
@@ -142,7 +142,7 @@ public class TestCaseOfIkongjian extends WebTestNGBase{
 			whichCaseIsRun(caseName);
 			
 			if(testEnvironment.equalsIgnoreCase("stage")){
-				ikongjianpage.loginIkongjian("wangliang1","Space521");
+				ikongjianpage.loginIkongjian("superman","space521");
 			}else if(testEnvironment.equalsIgnoreCase("test7")){
 				ikongjianpage.loginIkongjian("superman","space521");
 			}
@@ -173,7 +173,7 @@ public class TestCaseOfIkongjian extends WebTestNGBase{
 			whichCaseIsRun(caseName);
 			
 			if(testEnvironment.equalsIgnoreCase("stage")){
-				ikongjianpage.loginIkongjian("wangliang1","Space521");
+				ikongjianpage.loginIkongjian("superman","space521");
 			}else if(testEnvironment.equalsIgnoreCase("test7")){
 				ikongjianpage.loginIkongjian("superman","space521");
 			}
@@ -204,7 +204,7 @@ public class TestCaseOfIkongjian extends WebTestNGBase{
 			String testEnvironment = properties.getProperty("Environment");
 			
 			if(testEnvironment.equalsIgnoreCase("stage")){
-				ikongjianpage.loginIkongjian("wangliang1","Space521");
+				ikongjianpage.loginIkongjian("superman","space521");
 			}else if(testEnvironment.equalsIgnoreCase("test7")){
 				ikongjianpage.loginIkongjian("superman","space521");
 			}
@@ -242,7 +242,7 @@ public class TestCaseOfIkongjian extends WebTestNGBase{
 			String testEnvironment = properties.getProperty("Environment");
 			
 			if(testEnvironment.equalsIgnoreCase("stage")){
-				ikongjianpage.loginIkongjian("wangliang1","Space521");
+				ikongjianpage.loginIkongjian("superman","space521");
 			}else if(testEnvironment.equalsIgnoreCase("test7")){
 				ikongjianpage.loginIkongjian("superman","space521");
 			}
@@ -285,7 +285,7 @@ public class TestCaseOfIkongjian extends WebTestNGBase{
 			String testEnvironment = properties.getProperty("Environment");
 			
 			if(testEnvironment.equalsIgnoreCase("stage")){
-				ikongjianpage.loginIkongjian("wangliang1","Space521");
+				ikongjianpage.loginIkongjian("superman","space521");
 			}else if(testEnvironment.equalsIgnoreCase("test7")){
 				ikongjianpage.loginIkongjian("superman","space521");
 			}
