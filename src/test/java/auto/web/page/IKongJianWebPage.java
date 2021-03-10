@@ -301,6 +301,9 @@ public class IKongJianWebPage extends WebCommon{
 	
 	By allotDesignerBtnBy = By.id("allotDesignerBtn");
 	By designChBy = By.xpath("//input[@placeholder='--请选择--']");
+	//不创建聊天群，避开crm问题
+	By changeGroupBy = By.xpath("//form[@id='allotDesignerForm']/div[1]/p[1]/label[2]");
+	
 	By designerBy = By.xpath("//li[contains(text(),'张宁宁')]");
 	By updateCouponButBy = By.xpath("//form[@id='allotDesignerForm']/div[2]/input"); //分配设计师
 	By designersureBy = By.xpath("//a[contains(text(),'确定')]");
@@ -345,6 +348,9 @@ public class IKongJianWebPage extends WebCommon{
 				eleClickBy(canBtnBy);
 				
 				eleClickBy(allotDesignerBtnBy);
+				
+				eleClickBy(changeGroupBy);
+				
 				eleClickBy(designChBy);
 				eleClickBy(designerBy);
 			//	System.out.println(eleAttrValueGet(updateCouponButBy,"innerHTML"));
